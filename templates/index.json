@@ -9,20 +9,6 @@
  */
 {
   "sections": {
-    "header_announcements": {
-      "type": "header-announcements",
-      "blocks": {
-        "announcement_1": {
-          "type": "_announcement",
-          "settings": {
-            "text": "Free shipping on orders above ₹999"
-          }
-        }
-      },
-      "block_order": [
-        "announcement_1"
-      ]
-    },
     "hero": {
       "type": "hero",
       "blocks": {
@@ -128,7 +114,7 @@
     "collection_links": {
       "type": "collection-links",
       "settings": {
-        "collection_list": ""
+        "collection_list": []
       },
       "blocks": {
         "link": {
@@ -146,7 +132,6 @@
     }
   },
   "order": [
-    "header_announcements",
     "hero",
     "marquee",
     "collection_links",
