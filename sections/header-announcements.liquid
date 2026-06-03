@@ -11,7 +11,7 @@
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <aside
   class="announcement-bar spacing-style section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}"
-  style="{% render 'spacing-padding', settings: section.settings %}; --border-bottom-width: {{ section.settings.divider_width }}px; text-transform: {{ section.settings.announcement_text_case }}; letter-spacing: {{ section.settings.announcement_letter_spacing }}px;"
+  style="{% render 'spacing-padding', settings: section.settings %}; --border-bottom-width: {{ section.settings.divider_width }}px;"
 >
   {% liquid
     assign autoplay = false
@@ -135,32 +135,6 @@
     "groups": ["header"]
   },
   "settings": [
-    {
-      "type": "text",
-      "id": "announcement_text",
-      "label": "Announcement text",
-      "default": "Free shipping on orders above ₹999"
-    },
-    {
-      "type": "select",
-      "id": "announcement_text_case",
-      "label": "Text case",
-      "options": [
-        { "value": "none", "label": "Default" },
-        { "value": "uppercase", "label": "Uppercase" }
-      ],
-      "default": "uppercase"
-    },
-    {
-      "type": "range",
-      "id": "announcement_letter_spacing",
-      "label": "Letter spacing",
-      "min": 0,
-      "max": 8,
-      "step": 1,
-      "unit": "px",
-      "default": 2
-    },
     {
       "type": "range",
       "id": "speed",

@@ -114,19 +114,12 @@
   endif
 %}
 
-{%- liquid
-  assign hero_media_class = 'hero__media'
-  if settings.hero_breathing_animation
-    assign hero_media_class = hero_media_class | append: ' hero__media--breathing'
-  endif
--%}
-
 {% capture media_slot_1 %}
   {%- if media_1 == 'image' and media_1_mobile == 'image' -%}
     {%- comment -%} Both desktop and mobile are images. Assume similar images, and this is art direction: use picture element. {%- endcomment -%}
-     <picture
-       data-testid="hero-picture-1"
-       class="hero__media{% if settings.hero_breathing_animation %} hero__media--breathing{% endif %}"
+    <picture
+      data-testid="hero-picture-1"
+      class="hero__media"
     >
       <source
         media="(max-width: 749px)"
@@ -147,7 +140,7 @@
           widths: widths,
           height: section.settings.image_1.height,
           alt: section.settings.image_1.alt,
-          class: hero_media_class,
+          class: 'hero__media',
           sizes: sizes,
           fetchpriority: fetch_priority,
           data-testid: 'hero-desktop-image-1'
@@ -163,7 +156,7 @@
           widths: widths,
           height: section.settings.image_1.height,
           alt: section.settings.image_1.alt,
-          class: hero_media_class,
+          class: 'hero__media',
           sizes: sizes,
           fetchpriority: fetch_priority,
           data-testid: 'hero-desktop-image-1'
@@ -175,14 +168,14 @@
     <div class="{{ media_wrapper_desktop_class }}">
       {{
         section.settings.video_1
-         | video_tag:
-           poster: nil,
-           autoplay: true,
-           loop: true,
-           controls: false,
-           muted: true,
-           class: hero_media_class,
-           data-testid: 'hero-desktop-video-1'
+        | video_tag:
+          poster: nil,
+          autoplay: true,
+          loop: true,
+          controls: false,
+          muted: true,
+          class: 'hero__media',
+          data-testid: 'hero-desktop-video-1'
       }}
     </div>
   {%- endif -%}
@@ -199,7 +192,7 @@
             widths: mobile_widths,
             height: section.settings.image_1_mobile.height,
             alt: section.settings.image_1_mobile.alt,
-            class: hero_media_class,
+            class: 'hero__media',
             sizes: sizes_mobile,
             fetchpriority: fetch_priority,
             data-testid: 'hero-mobile-image-1'
@@ -211,14 +204,14 @@
       <div class="{{ media_wrapper_mobile_class }}">
         {{
           section.settings.video_1_mobile
-           | video_tag:
-             poster: nil,
-             autoplay: true,
-             loop: true,
-             controls: false,
-             muted: true,
-             class: hero_media_class,
-             data-testid: 'hero-mobile-video-1'
+          | video_tag:
+            poster: nil,
+            autoplay: true,
+            loop: true,
+            controls: false,
+            muted: true,
+            class: 'hero__media',
+            data-testid: 'hero-mobile-video-1'
         }}
       </div>
     {%- endif -%}
@@ -228,9 +221,9 @@
 {% capture media_slot_2 %}
   {%- if media_2 == 'image' and media_2_mobile == 'image' -%}
     {%- comment -%} Both desktop and mobile are images. Assume this is art direction: use picture element.  {%- endcomment -%}
-     <picture
-       class="hero__media{% if settings.hero_breathing_animation %} hero__media--breathing{% endif %}"
-       data-testid="hero-picture-2"
+    <picture
+      class="hero__media"
+      data-testid="hero-picture-2"
     >
       <source
         media="(max-width: 749px)"
@@ -251,7 +244,7 @@
           widths: widths,
           height: section.settings.image_2.height,
           alt: section.settings.image_2.alt,
-          class: hero_media_class,
+          class: 'hero__media',
           sizes: sizes,
           fetchpriority: fetch_priority,
           data-testid: 'hero-desktop-image-2'
@@ -267,7 +260,7 @@
           widths: widths,
           height: section.settings.image_2.height,
           alt: section.settings.image_2.alt,
-          class: hero_media_class,
+          class: 'hero__media',
           sizes: sizes,
           fetchpriority: fetch_priority,
           data-testid: 'hero-desktop-image-2'
@@ -279,14 +272,14 @@
     <div class="{{ media_wrapper_desktop_class }}">
       {{
         section.settings.video_2
-         | video_tag:
-           poster: nil,
-           autoplay: true,
-           loop: true,
-           controls: false,
-           muted: true,
-           class: hero_media_class,
-           data-testid: 'hero-desktop-video-2'
+        | video_tag:
+          poster: nil,
+          autoplay: true,
+          loop: true,
+          controls: false,
+          muted: true,
+          class: 'hero__media',
+          data-testid: 'hero-desktop-video-2'
       }}
     </div>
   {%- endif -%}
@@ -303,7 +296,7 @@
             widths: mobile_widths,
             height: section.settings.image_2_mobile.height,
             alt: section.settings.image_2_mobile.alt,
-            class: hero_media_class,
+            class: 'hero__media',
             sizes: sizes_mobile,
             fetchpriority: fetch_priority,
             data-testid: 'hero-mobile-image-2'
@@ -321,7 +314,7 @@
             loop: true,
             controls: false,
             muted: true,
-            class: hero_media_class,
+            class: 'hero__media',
             data-testid: 'hero-mobile-video-2'
         }}
       </div>
@@ -385,7 +378,7 @@
             widths: mobile_widths,
             height: section.settings.image_1_mobile.height,
             alt: '',
-            class: hero_media_class,
+            class: 'hero__media',
             sizes: sizes_mobile
           }}
       {% endif %}
@@ -396,7 +389,7 @@
             widths: mobile_widths,
             height: section.settings.image_2_mobile.height,
             alt: '',
-            class: hero_media_class,
+            class: 'hero__media',
             sizes: sizes_mobile
           }}
       {% endif %}
@@ -412,7 +405,7 @@
             widths: mobile_widths,
             height: section.settings.image_2_mobile.height,
             alt: '',
-            class: hero_media_class,
+            class: 'hero__media',
             sizes: sizes_mobile
         }}
       {% elsif media_1_mobile == 'image' %}
@@ -422,7 +415,7 @@
             widths: mobile_widths,
             height: section.settings.image_1_mobile.height,
             alt: '',
-            class: hero_media_class,
+            class: 'hero__media',
             sizes: sizes_mobile
           }}
       {% endif %}
@@ -435,7 +428,7 @@
               widths: widths,
               height: section.settings.image_2.height,
               alt: '',
-              class: hero_media_class,
+              class: 'hero__media',
               sizes: sizes
             }}
         {% elsif media_1 == 'image' %}
@@ -445,7 +438,7 @@
               widths: widths,
               height: section.settings.image_1.height,
               alt: '',
-              class: hero_media_class,
+              class: 'hero__media',
               sizes: sizes
             }}
         {% endif %}
@@ -465,8 +458,6 @@
     --hero-border-width: {{ section.settings.border_width }}px;
     --hero-border-opacity: {{ section.settings.border_opacity }}%;
     --blur-opacity: {{ section.settings.reflection_opacity | divided_by: 100.0 }};
-    overflow: hidden;
-    position: relative;
     {% if section.settings.section_height == 'custom' %}
       --hero-min-height: {{ section.settings.section_height_custom }}svh;
     {% elsif section.settings.section_height == "full-screen" %}
@@ -541,14 +532,7 @@
         {{section.settings.section_width}}
         {% if request.design_mode %}hero__content-wrapper--design-mode{% endif %}
       "
-      style="
-        {% render 'layout-panel-style', settings: section.settings %};
-        text-align: {{ settings.hero_text_alignment }};
-        align-items: {% if settings.hero_text_alignment == 'right' %}flex-end{% elsif settings.hero_text_alignment == 'center' %}center{% else %}flex-start{% endif %};
-        justify-content: {% if settings.hero_text_vertical_position == 'top' %}flex-start{% elsif settings.hero_text_vertical_position == 'middle' %}center{% else %}flex-end{% endif %};
-        position: relative;
-        z-index: 2;
-      "
+      style="{% render 'layout-panel-style', settings: section.settings %}"
     >
       {% content_for 'blocks' %}
     </div>
@@ -759,14 +743,6 @@
         left: auto;
       }
     }
-  }
-
-  .hero__media-grid .overlay--solid {
-    background: rgba(0, 0, 0, var(--hero-overlay-opacity)) !important;
-  }
-
-  .hero__media-grid .overlay--gradient {
-    background: linear-gradient(var(--overlay-direction), rgba(0, 0, 0, var(--hero-overlay-opacity)), rgba(0, 0, 0, 0)) !important;
   }
 {% endstylesheet %}
 

@@ -1,7 +1,7 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Horizon",
+    "theme_name": "Ritual",
     "theme_version": "3.5.1",
     "theme_author": "Shopify",
     "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
@@ -1427,60 +1427,6 @@
         ],
         "default": "lift",
         "info": "t:info.hover_effects"
-      }
-    ]
-  },
-  {
-    "name": "Hero Section",
-    "settings": [
-      {
-        "type": "checkbox",
-        "id": "hero_breathing_animation",
-        "label": "Enable hero breathing animation",
-        "default": true,
-        "info": "Slow scale pulse on the hero background image"
-      },
-      {
-        "type": "range",
-        "id": "hero_breathing_duration",
-        "label": "Breathing animation speed (seconds)",
-        "min": 4,
-        "max": 20,
-        "step": 1,
-        "unit": "s",
-        "default": 8
-      },
-      {
-        "type": "select",
-        "id": "hero_text_alignment",
-        "label": "Hero text alignment",
-        "options": [
-          { "value": "left", "label": "Left" },
-          { "value": "center", "label": "Center" },
-          { "value": "right", "label": "Right" }
-        ],
-        "default": "right"
-      },
-      {
-        "type": "select",
-        "id": "hero_text_vertical_position",
-        "label": "Hero text vertical position",
-        "options": [
-          { "value": "top", "label": "Top" },
-          { "value": "middle", "label": "Middle" },
-          { "value": "bottom", "label": "Bottom" }
-        ],
-        "default": "bottom"
-      },
-      {
-        "type": "range",
-        "id": "hero_overlay_opacity",
-        "label": "Image overlay opacity",
-        "min": 0,
-        "max": 80,
-        "step": 5,
-        "unit": "%",
-        "default": 20
       }
     ]
   },

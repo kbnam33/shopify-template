@@ -15,8 +15,6 @@
     {%- render 'spacing-style', settings: section.settings %};
     {% render 'gap-style', value: gap_between_elements, name: 'marquee-gap' %}
     --marquee-direction: {{ section.settings.movement_direction }};
-    --marquee-duration: {{ section.settings.marquee_speed }}s;
-    text-transform: {{ section.settings.marquee_text_case }};
   "
   data-speed-factor="25"
   data-movement-direction="{{ section.settings.movement_direction }}"
@@ -81,7 +79,7 @@
 
   @media (prefers-reduced-motion: no-preference) {
     marquee-component:not([data-disabled]) .marquee__wrapper {
-      animation: marquee-motion var(--marquee-duration) linear infinite var(--marquee-direction);
+      animation: marquee-motion var(--marquee-speed) linear infinite var(--marquee-direction);
     }
   }
 
@@ -113,31 +111,6 @@
     }
   ],
   "settings": [
-    {
-      "type": "range",
-      "id": "marquee_speed",
-      "label": "Scroll speed (seconds per loop)",
-      "min": 10,
-      "max": 60,
-      "step": 5,
-      "default": 25
-    },
-    {
-      "type": "select",
-      "id": "marquee_text_case",
-      "label": "Text case",
-      "options": [
-        { "value": "none", "label": "Default" },
-        { "value": "uppercase", "label": "Uppercase" }
-      ],
-      "default": "none"
-    },
-    {
-      "type": "text",
-      "id": "marquee_separator",
-      "label": "Separator between items",
-      "default": "·"
-    },
     {
       "type": "select",
       "id": "movement_direction",

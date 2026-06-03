@@ -683,25 +683,6 @@
     --cart-primary-font-weight: var(--font-body--weight);
     --cart-secondary-font-family: var(--font-{{ settings.cart_price_font }}--family);
     --cart-secondary-font-style: var(--font-{{ settings.cart_price_font }}--style);
-     --cart-secondary-font-weight: var(--font-{{ settings.cart_price_font }}--weight);
-
-     /* Hero Breathing Animation */
-     --hero-breathing-duration: {{ settings.hero_breathing_duration }}s;
-     --hero-overlay-opacity: {{ settings.hero_overlay_opacity | divided_by: 100.0 }};
-   }
-{% endstyle %}
-
-{% if settings.hero_breathing_animation %}
-{% style %}
-  @keyframes hero-breathe {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.04); }
-  }
-
-  .hero__media--breathing .hero__image,
-  .hero__media--breathing video {
-    animation: hero-breathe var(--hero-breathing-duration) ease-in-out infinite;
-    will-change: transform;
+    --cart-secondary-font-weight: var(--font-{{ settings.cart_price_font }}--weight);
   }
 {% endstyle %}
-{% endif %}
