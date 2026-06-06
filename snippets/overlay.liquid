@@ -35,4 +35,8 @@
   .overlay--gradient {
     background: linear-gradient(var(--overlay-direction), var(--overlay-color), var(--overlay-color--end));
   }
+
+  .overlay--vignette {
+    background: radial-gradient(ellipse 120% 100% at 65% 55%, var(--overlay-color--end) 0%, var(--overlay-color--end) 40%, var(--overlay-color) 100%);
+  }
 {% endstylesheet %}
