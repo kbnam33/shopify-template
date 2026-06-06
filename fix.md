@@ -1,21 +1,29 @@
----
+# TECHNICAL PLAN — Vignette Fix: Use overlay.liquid Correctly
 
-# TECHNICAL PLAN — Vignette Fix: Correct DOM Position
+## TASK 1 — `sections/hero.liquid` — Remove the two vignette divs
 
-## TASK 1 — `sections/hero.liquid` — Move vignette divs out of `.hero__media-grid`
-
-In the HTML of `sections/hero.liquid`, locate the two vignette divs (`hero__vignette-main` and `hero__vignette-nav`) that are currently sitting inside the `<div class="hero__media-grid">` element. Remove them from inside that div.
-
-Place both divs immediately **after** the closing tag of `.hero__media-grid` and immediately **before** the opening tag of the `hero__content-wrapper` div. They should be direct children of `.hero__container` at this position.
-
-Update the inline `style` attribute on `hero__vignette-main` to use `z-index: 3` instead of `z-index: 2` — this ensures it sits above the media grid's stacking context entirely.
-
-Update the inline `style` attribute on `hero__vignette-nav` to use `z-index: 3` as well.
-
-Both divs keep all other inline styles exactly as they are — only their DOM position and z-index value changes.
+In the HTML of `sections/hero.liquid`, find and remove both the `hero__vignette-main` div and the `hero__vignette-nav` div entirely. These have failed across multiple attempts due to Horizon's stacking context system.
 
 ---
 
-## Push after changes:
+## TASK 2 — `snippets/overlay.liquid` — Add a custom two-layer gradient style
 
-Push only `sections/hero.liquid` to theme `188273557786` on store `x9iqze-nb.myshopify.com`.
+Inside the `{% stylesheet %}` block of `snippets/overlay.liquid`, after the existing `.overlay--gradient` rule, add a new rule targeting `.overlay--neera-vignette`.
+
+This rule sets `background` to a value that combines two gradients in a single `background` property — a comma-separated list. The first gradient is the main bottom-right vignette at 315 degrees going from `rgba(0,0,0,0.82)` at 0% to `rgba(0,0,0,0.45)` at 30% to fully transparent at 55%. The second gradient runs from top to bottom, starting at `rgba(0,0,0,0.35)` at 0% and fading to transparent over 110px using `calc` — specifically fading to transparent at the point where 110px of height has been covered.
+
+---
+
+## TASK 3 — `templates/index.json` — Enable the overlay and set it to the new style
+
+Inside `section_Fh7TFQ`'s `"settings"` object:
+
+Set `"toggle_overlay"` to `true` — this activates the `render 'overlay'` call inside `.hero__media-grid`, which is already `position: absolute; inset: 0` and uses `z-index: var(--layer-flat)` from the overlay snippet. This stacking context is correct and proven to work.
+
+Set `"overlay_style"` to `"neera-vignette"` — this matches the new CSS class `.overlay--neera-vignette` added in Task 2.
+
+---
+
+## Push both files after changes:
+
+Push `snippets/overlay.liquid` and `templates/index.json` to theme `188273557786` on store `x9iqze-nb.myshopify.com`.
