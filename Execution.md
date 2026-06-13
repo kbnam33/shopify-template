@@ -1,132 +1,72 @@
-# TECHNICAL PLAN — Hero Design Refinement
-
-## TASK 1 — `config/settings_data.json` — Switch heading font to DM Serif Display
-
-Inside the `"current"` object, change `"type_heading_font"` from `"cormorant_n4"` to `"dm_serif_display_n4"`.
-
-Change `"type_accent_font"` from `"cormorant_i4"` to `"dm_serif_display_i4"`.
-
-This is the only font change — body and nav remain Jost.
+## TECHNICAL INSTRUCTIONS — Font Replacement & Remove Unused Sections
 
 ---
 
-## TASK 2 — `config/settings_data.json` — Set the full type scale for the hero
+## PART 1 — FONT REPLACEMENT
 
-Inside the `"current"` object, set the following heading scale values:
+### TARGET FILE: `config/settings_data.json`
+### TARGET OBJECT: `"current"` at root level
 
-Set `"type_size_h1"` to `"72"` — DM Serif Display at 72px reads as a strong editorial statement without feeling like a shout. Cormorant needed to be pulled back; DM Serif can carry 72.
+**The problem:** `dm_serif_display_n4` is rendering as a heavy, condensed display serif that reads more like Times New Roman at small sizes and becomes overpowering at large display sizes. The brand needs a refined editorial serif with elegant proportions — warmer, more legible, less newspaper-like.
 
-Set `"type_line_height_h1"` to `"display-tight"` — keeps the two lines of the headline close together as a single unit.
-
-Set `"type_letter_spacing_h1"` to `"none"` — DM Serif Display has natural elegant spacing, no tracking needed.
-
-Set `"type_case_h1"` to `"none"` — sentence case, consistent with Neera's brand voice (never shouts).
-
-Set `"type_size_h2"` to `"52"`.
-
-Set `"type_size_h3"` to `"36"`.
-
-Set `"type_size_h4"` to `"24"`.
-
-For nav (h6 preset): set `"type_size_h6"` to `"11"`, `"type_case_h6"` to `"uppercase"`, `"type_letter_spacing_h6"` to `"heading-loose"`, `"type_font_h6"` to `"body"`.
+**Recommended replacement:** `cormorant_garamond_n4` for headings and accent — this is a high-contrast elegant serif widely used by premium fashion and textile brands. It has the same display quality but with better proportions, a softer character, and reads as genuinely luxurious rather than archival.
 
 ---
 
-## TASK 3 — `templates/index.json` — Hero headline forced two-line break
+### INSTRUCTION 1 — Heading Font
 
-Inside `section_Fh7TFQ`, inside the group block, find the headline text block. Its `"text"` value currently contains the full sentence in a single h1 tag on one line.
-
-Change the `"text"` value so that "Wear what" is on the first line and "the day demands." is on the second line — achieved by closing the first h1 tag after "Wear what" and opening a second h1 tag for "the day demands." This produces two separate block-level elements that stack vertically, creating the natural two-line visual break seen in the reference.
-
-Change the headline block's `"max_width"` to `"narrow"` and `"width"` to `"fit-content"` — this constrains the container so the lines don't stretch beyond the natural length of the text.
-
-Change the headline block's `"type_preset"` to `"h1"` — confirm this is set correctly.
+Within the `"current"` object, find the key `"type_heading_font"`. Change its value from `"dm_serif_display_n4"` to `"cormorant_garamond_n6"`. The `n6` weight gives it the bold presence needed for hero headlines without appearing heavy.
 
 ---
 
-## TASK 4 — `templates/index.json` — Hero content group positioning
+### INSTRUCTION 2 — Accent Font
 
-Inside the group block wrapping all hero content, update the padding settings:
-
-Set `"padding-inline-end"` to `64` — pushes the text block away from the right edge, giving it breathing room.
-
-Set `"padding-block-end"` to `72` — lifts the text block up from the very bottom edge.
-
-Set `"gap"` inside the group to `12` — tightens the vertical space between headline, subheading, and CTA so they read as one cohesive unit rather than three separate items.
+Within the `"current"` object, find the key `"type_accent_font"`. Change its value from `"dm_serif_display_i4"` to `"cormorant_garamond_i4"`. The `i4` is the italic variant — used for eyebrow labels and decorative text.
 
 ---
 
-## TASK 5 — `templates/index.json` — Subheading refinement
+### INSTRUCTION 3 — Body Font Size
 
-Inside the subheading text block within the group:
-
-Set `"type_preset"` to `"subheading"` — renders at a slightly larger and more intentional size than paragraph.
-
-Set `"letter_spacing"` to `"heading-loose"` — gives the subheading the tracked quality that separates it visually from the headline.
-
-Set `"color"` to `"#C8B89A"` — the warm sand tone, quieter than the headline's pure white, creating a clear hierarchy between the two lines.
-
-Set `"padding-block-start"` to `8` — adds a small breath between the headline and subheading.
+Within the `"current"` object, find the key `"type_size_paragraph"`. Change its value from `"14"` to `"15"`. Jost at 14px is slightly tight for body copy on a fashion brand — 15px improves reading comfort without breaking the layout rhythm.
 
 ---
 
-## TASK 6 — `templates/index.json` — CTA button refinement
+## PART 2 — REMOVE UNUSED SECTIONS
 
-Inside the button block within the group:
+### TARGET FILE: `templates/index.json`
 
-Set `"style"` to `"secondary"` — renders as an outlined/ghost button, which is more refined than a filled button on a dark hero.
-
-Set `"case"` to `"uppercase"`.
-
-Set `"padding-block-start"` to `16` — separates the button from the subheading with intentional space.
-
-Confirm `"text"` is `"Explore the collection"` and `"link"` is `"/collections/all"`.
+Looking at the screenshots, the following sections are rendering with placeholder content (Shopify's default illustration placeholders — the illustrated clothing hangers, the t-shirt graphic, the "SHOP NOW" ticker bar, and the "Demo Store" footer wordmark). These sections have no real content assigned and should be removed entirely from the homepage.
 
 ---
 
-## Push both files after all changes:
+### INSTRUCTION 4 — Remove Collection List (placeholder illustrations row)
 
-Push `config/settings_data.json` and `templates/index.json` to theme `188273557786` on store `x9iqze-nb.myshopify.com`.
-
-
-------------------------------
-
-# TECHNICAL PLAN — Hero Typography Fixes
-
-## TASK 1 — `templates/index.json` — Reduce headline line gap
-
-Inside `section_Fh7TFQ`, inside the group block, find the headline text block. The two-line break is currently implemented as two separate h1 tags stacked vertically. The gap between them is being driven by the `"gap"` setting on the group block, not by line-height.
-
-Inside the group block's `"settings"`, change `"gap"` from its current value to `4` — this tightens the space between all three elements (headline line 1, headline line 2, subheading, button) to a minimal value so the two headline lines read as one unit.
-
-Then on the headline text blocks themselves, set `"padding-block-start"` and `"padding-block-end"` to `0` on both — ensuring no block-level padding is adding to the visual gap between the two lines.
+In the `"sections"` object, find and delete the entire entry with key `"collection_list_FFV7jq"` (type `"collection-list"` — the one showing 6 placeholder collection cards with illustrated garments on hangers). Also remove its key from the `"order"` array.
 
 ---
 
-## TASK 2 — `config/settings_data.json` — Fix nav font
+### INSTRUCTION 5 — Remove Featured Product (illustrated t-shirt section)
 
-The nav is picking up DM Serif Display because the header in Horizon uses either `h5` or `h6` preset for nav links, and the h5/h6 preset is currently mapped to the heading font family.
-
-Inside the `"current"` object, make these changes:
-
-Set `"type_font_h5"` to `"body"` — forces h5 preset to use Jost.
-
-Set `"type_font_h6"` to `"body"` — forces h6 preset to use Jost.
-
-Set `"type_case_h5"` to `"uppercase"`.
-
-Set `"type_case_h6"` to `"uppercase"`.
-
-Set `"type_letter_spacing_h5"` to `"heading-loose"`.
-
-Set `"type_letter_spacing_h6"` to `"heading-loose"`.
-
-Set `"type_size_h5"` to `"12"`.
-
-Set `"type_size_h6"` to `"11"`.
+In the `"sections"` object, find and delete the entire entry with key `"featured_product_pW7dEU"` (type `"featured-product"` — the one showing the placeholder illustrated t-shirt on a warm beige background alongside the fabric illustration). Also remove its key from the `"order"` array.
 
 ---
 
-## Push both files after changes:
+### INSTRUCTION 6 — Remove Second Collection List (bottom placeholder grid)
 
-Push `config/settings_data.json` and `templates/index.json` to theme `188273557786` on store `x9iqze-nb.myshopify.com`.
+In the `"sections"` object, find and delete the entire entry with key `"collection_list_iAQiBH"` (type `"collection-list"` — the second collection list visible lower on the page). Also remove its key from the `"order"` array.
+
+---
+
+### INSTRUCTION 7 — Verify the Final Order Array
+
+After removals, the `"order"` array in `templates/index.json` should contain only these keys in this sequence:
+
+`"section_Fh7TFQ"` (hero) → `"media_linen"` → `"media_mulmul"` → the featured collection section key showing "The Edit".
+
+Confirm no other section keys remain in the array beyond these four.
+
+---
+
+## PUSH AFTER ALL CHANGES
+
+Push both `config/settings_data.json` and `templates/index.json` to theme `188273557786` on store `x9iqze-nb.myshopify.com`.
